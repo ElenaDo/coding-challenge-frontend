@@ -11,9 +11,14 @@
         </thead>
         <tbody>
           <tr v-for="(value, key) in summary" :key="value.identifier">
-            <td>{{ key }}</td>
+            <td><router-link :to="`/call/${key}`">{{ key }}</router-link></td>
             <td>{{ value.callCount }} {{ value.callCount > 1 ? 'calls' : 'call' }} </td>
-            <td>{{ value.last.agentName }} / {{formatDate(value.last.dateTime)}} </td>
+            <td>
+              <router-link :to="`/agent/${value.last.agentIdentifier}`">
+                {{ value.last.agentName }}
+              </router-link> /
+              {{formatDate(value.last.dateTime)}}
+            </td>
           </tr>
         </tbody>
       </table>
