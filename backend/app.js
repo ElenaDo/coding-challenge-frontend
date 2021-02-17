@@ -36,6 +36,12 @@ app.get('/agent/:id', (req, res) => {
   res.json(result);
 })  
 
+app.get('/call/:number', (req, res) => {
+  const { number } = req.params;
+  const result =  mappedLogs.filter(log => log.number === number);
+  res.json(result);
+})  
+
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
 })
