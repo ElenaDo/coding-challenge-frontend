@@ -13,8 +13,7 @@ function arrToObject(arr) {
     acc[curr.identifier] = curr;
     return acc;
   }, {})
-}
-console.log(arrToObject(resolution));
+};
 
 const agentsObj = arrToObject(agents);
 const resolutionsObj = arrToObject(resolution);
@@ -23,12 +22,21 @@ const mappedLogs = logs.map(log => {
   const agent = agentsObj[log.agentIdentifier];
   const agentName = `${agent.firstName} ${agent.lastName}`;
   return { ...log, resolution, agentName };
-})
-console.log(mappedLogs);
+});
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-})
+app.get('/summary', (req, res) => {
+  const summary = mappedLogs.reduce((acc, curr) => {
+    const last = curr;
+    if (!acc[curr.number]) {
+      acc[curr.number] = { callCount: 1, last };
+    } else {
+      acc[curr.number].callCount++;
+      acc[curr.number].last;
+    }
+    return acc;
+  }, {})
+  res.json(summary);
+});
 
 app.get('/agent/:id', (req, res) => {
   const { id } = req.params;
