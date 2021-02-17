@@ -30,6 +30,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 })
 
+app.get('/agent/:id', (req, res) => {
+  const { id } = req.params;
+  const result =  mappedLogs.filter(log => log.agentIdentifier === id);
+  res.json(result);
+})  
+
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
 })
