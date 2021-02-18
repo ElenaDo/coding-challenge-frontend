@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th v-for="(header, index) in headers" :key="index">{{header}}</th>

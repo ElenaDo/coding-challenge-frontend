@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th v-for="(header, index) in headers" :key="index">{{ header }}</th>
@@ -8,10 +8,12 @@
       </thead>
       <tbody>
         <tr v-for="(value, key) in summary" :key="value.identifier">
-          <td><router-link :to="`/call/${key}`">{{ key }}</router-link></td>
+          <td><router-link class="link"
+            :to="`/call/${key}`">{{ key }}</router-link></td>
           <td>{{ value.callCount }} {{ value.callCount > 1 ? 'calls' : 'call' }} </td>
           <td>
             <router-link
+              class="link"
               :to="`/agent/${value.last.agentIdentifier}`"
             >{{ value.last.agentName }}</router-link> /
             {{ formatDate(value.last.dateTime, 'HH:mm') }}
@@ -51,10 +53,5 @@ export default {
 </script>
 
 <style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: .5rem;
-}
 
 </style>
