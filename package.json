@@ -4,6 +4,7 @@
   "description": "coding challenge ",
   "main": "index.js",
   "scripts": {
+    "start": "npm start --prefix backend & npm run serve --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
